@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>영수증 OCR 웹</title>
+    <style>
+        body { font-family: 'Arial'; text-align: center; margin-top: 50px; }
+        img { max-width: 400px; margin-top: 20px; border: 1px solid #ccc; }
+        textarea { width: 80%; height: 200px; margin-top: 20px; }
+        input[type=file] { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🧾 영수증 OCR</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <br>
+        <button type="submit">이미지 분석하기</button>
+    </form>
+
+    {% if image_url %}
+        <h3>업로드된 이미지</h3>
+        <img src="{{ image_url }}" alt="Uploaded Image">
+    {% endif %}
+
+    {% if ocr_text %}
+        <h3>📄 OCR 결과</h3>
+        <textarea readonly>{{ ocr_text }}</textarea>
+    {% endif %}
+</body>
+</html>
+
