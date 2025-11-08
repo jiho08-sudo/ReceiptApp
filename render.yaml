@@ -2,6 +2,7 @@ services:
   - type: web
     name: receipt-app
     env: python
+    plan: free
     buildCommand: |
       apt-get update && \
       apt-get install -y tesseract-ocr tesseract-ocr-kor libtesseract-dev && \
