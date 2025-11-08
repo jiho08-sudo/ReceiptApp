@@ -5,7 +5,9 @@ services:
     buildCommand: |
       apt-get update && \
       apt-get install -y tesseract-ocr tesseract-ocr-kor libtesseract-dev && \
+      pip install --upgrade pip && \
       pip install -r requirements.txt
     startCommand: gunicorn app:app
+
 
 
