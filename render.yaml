@@ -1,8 +1,11 @@
 services:
   - type: web
-    name: receipt-ocr
+    name: receipt-app
     env: python
-    buildCommand: ./install_tesseract.sh && pip install -r requirements.txt
+    buildCommand: |
+      apt-get update && \
+      apt-get install -y tesseract-ocr tesseract-ocr-kor libtesseract-dev && \
+      pip install -r requirements.txt
     startCommand: gunicorn app:app
-    plan: free
+
 
