@@ -4,8 +4,6 @@ from ocr_core import run_ocr
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
-
-# 업로드 폴더 없으면 생성
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -24,10 +22,11 @@ def index():
                 filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
                 file.save(filepath)
                 ocr_text = run_ocr(filepath)
-                image_url = filepath.replace("\\", "/")  # 윈도우 호환용 경로 수정
+                image_url = filepath.replace("\\", "/")
 
     return render_template('index.html', image_url=image_url, ocr_text=ocr_text)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+
 
